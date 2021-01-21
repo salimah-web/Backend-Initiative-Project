@@ -12,9 +12,11 @@ class userSerializer(serializers.ModelSerializer):
         fields=['id','username','email']
 
 class rentalserializer(serializers.ModelSerializer):
-    #movie_name=movieSerializer()
-    movie_name = serializers.ReadOnlyField(source='movie_name.Title')
+    movie_Title=serializers.SerializerMethodField()
     
     class Meta:
         model=rentals
-        fields=['movie_name','amount']
+        fields=['movie_id','amount','movie_Title']
+
+    def get_movie_Title(self, obj):
+        return obj.movie_id.Title
