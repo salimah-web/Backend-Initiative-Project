@@ -19,14 +19,28 @@ class users(viewsets.ModelViewSet):
         users=User.objects.all()
         return users
 
+    
+
 class movies(viewsets.ModelViewSet):
     queryset=movie.objects.all()
     serializer_class = movieSerializer
+
+
+    def destroy(self, request, *args, **kwargs):
+        movie_to_del= self.get_object()
+        movie_to_del.delete()
+
+        return  Response({'message':'successfully deleted'})
 
 class movie_rentals(viewsets.ModelViewSet):
     queryset=rentals.objects.all()
     serializer_class = rentalserializer
 
+    def destroy(self, request, *args, **kwargs):
+        rental_to_del= self.get_object()
+        rental_to_del.delete()
+
+        return  Response({'message':'successfully deleted'})
 
 
 
