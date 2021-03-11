@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 class movieSerializer(serializers.ModelSerializer):
     class Meta:
         model=movie
-        fields=['Title','genre','production_year','producer']
+        fields=['id','Title','genre','production_year','producer']
 
 class userSerializer(serializers.ModelSerializer):
     class Meta:

@@ -12,9 +12,9 @@ class movie(models.Model):
         return self.Title
 
 class rentals(models.Model):
-    movie_id = models.ForeignKey(movie,on_delete=models.CASCADE)
+    movie_id = models.ForeignKey(to=movie,on_delete=models.CASCADE)
     amount=models.CharField(max_length=10)
-    def __unicode__(self):
+    def __str__(self):
         return self.movie_id
 
     
