@@ -6,17 +6,14 @@ class movie(models.Model):
     genre=models.CharField(max_length=30)
     producer=models.CharField(max_length=30)
     production_year=models.CharField(max_length=4)
-
+    rent_fee =models.CharField(max_length=10, default='2000')
 
     def __str__(self):
         return self.Title
 
 class rentals(models.Model):
-    movie_id = models.ForeignKey(to=movie,on_delete=models.CASCADE)
-    amount=models.CharField(max_length=10)
+    owner = models.ForeignKey(to=User, on_delete=models.CASCADE, default = 1)
+    movie_id = models.ForeignKey(movie,on_delete=models.CASCADE)
+    
     def __str__(self):
-        return self.movie_id
-
-    
-
-    
+        return str(self.movie_id)

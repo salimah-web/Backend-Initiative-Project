@@ -1,9 +1,6 @@
 from django.contrib import admin
-
-# Register your models here.
 from .models import movie,rentals
-
-
+# Register your models here.
 
 admin.site.register(movie)
 admin.site.register(rentals)
