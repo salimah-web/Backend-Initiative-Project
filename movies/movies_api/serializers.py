@@ -15,10 +15,11 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields=['username','email', 'password']
 
-    def validate(self, attrs):
-        email=attrs.get('email','')
-        if User.objects.filter(email=email).exists():
-            raise serializers.ValidationError({'email', ('email already exist')})
+
+    def validate_email(self, attrs):
+    
+        if User.objects.filter(email=attrs).exists():
+            raise serializers.ValidationError({'email already exist'})
         return super().validate(attrs)
 
     def create(self, validated_data):
@@ -33,7 +34,7 @@ class Rentalserializer(serializers.ModelSerializer):
         fields=['movie_id','amount','movie_Title']
 
     def get_movie_Title(self, obj):
-        return obj.movie_id.Title
+        return obj.movie.Title
 
     def get_amount(self, obj):
         return obj.movie_id.rent_fee
